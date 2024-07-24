@@ -11,13 +11,9 @@ Djangoで作成したアンケートWEBサイトです。
 
 ## デモ
 
-### 自動生成ドキュメント
+### アンケート一覧画面
 
-![デモ画像](images/ReadMeDemoImage.png)
-
-### 自動テストの実行
-
-![デモ画像](images/ReadMeDemoImageTest.png)
+![アンケート一覧画面](images/questionnaire_list.png)
 
 ## 動作確認方法
 
