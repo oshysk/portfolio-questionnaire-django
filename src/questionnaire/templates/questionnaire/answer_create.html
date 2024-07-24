@@ -1,0 +1,36 @@
+{% extends 'questionnaire/_base.html' %}
+
+{% block title %}
+アンケート回答 | アンケート（Django）
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center" data-zanim-timeline="{}" data-zanim-trigger="scroll">
+        <div class="col-lg-7">
+            <div class="mb-3">
+                <a href="{% url 'questionnaire:questionnaire_list' %}">アンケート一覧</a>
+                <span class="mx-2 text-700">></span>
+                <span class="text-700">投票</span>
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                <h3>{{ questionnaire.title }}</h3>
+                <div><p>{{ questionnaire.overview }}</p></div>
+                <div>
+                    {% for radio in answer_form.choice %}
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio"
+                            name="{{ answer_form.choice.name }}" value="{{ radio.data.value }}" required />
+                        <label class="form-check-label">{{ radio.choice_label }}</label>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-dark">投票</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

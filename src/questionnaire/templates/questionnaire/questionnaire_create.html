@@ -1,0 +1,121 @@
+{% extends 'questionnaire/_base.html' %}
+
+{% block title %}
+アンケート作成 | アンケート（Django）
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center" data-zanim-timeline="{}" data-zanim-trigger="scroll">
+        <div class="col-lg-7">
+            <div class="mb-3">
+                <a href="{% url 'questionnaire:questionnaire_list' %}">アンケート一覧</a>
+                <span class="mx-2 text-700">></span>
+                <span class="text-700">アンケート作成</span>
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                <h3>アンケート作成</h3>
+
+                {% if questionnaire_form.errors or choice_form_list_errors %}
+                <div class="error-summary">
+                    <ul>
+                        {% for error in questionnaire_form.non_field_errors %}
+                        <li style="color: red;">{{ error }}</li>
+                        {% endfor %}
+                        {% for choice_form in choice_form_list %}
+                            {% for error in choice_form.non_field_errors %}
+                            <li style="color: red;">{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                <div class="form-group mb-3">
+                    <input type="text" placeholder="{{ questionnaire_form.title.label }}"
+                        name="{{ questionnaire_form.title.name }}" class="form-control"
+                        maxlength="{{ questionnaire_form.title.field.max_length }}"
+                        value="{{ questionnaire_form.title.value|default_if_none:'' }}" required />
+                    
+                    {% if questionnaire_form.title.errors %}
+                    <div class="errors">
+                        <ul class="errorlist">
+                            {% for error in questionnaire_form.title.errors %}
+                            <li style="color: red;">{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+
+                </div>
+                <div class="form-group mb-3">
+                    <textarea name="{{ questionnaire_form.overview.name }}" class="form-control" rows="10"
+                        placeholder="{{ questionnaire_form.overview.label }}"
+                        maxlength="{{ questionnaire_form.overview.field.max_length }}"
+                        required>{{ questionnaire_form.overview.value|default_if_none:'' }}</textarea>
+
+                    {% if questionnaire_form.overview.errors %}
+                    <div class="errors">
+                        <ul class="errorlist">
+                            {% for error in questionnaire_form.overview.errors %}
+                            <li style="color: red;">{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+
+                </div>
+                <h5>選択内容</h5>
+                <ol class="px-3" id="choice-list">
+
+                    {% for choice_form in choice_form_list %}
+                    <li><input type="text" name="{{ choice_form.text.name }}[]" class="form-control mb-1"
+                            placeholder="{{ choice_form.text.label }}"
+                            maxlength="{{ choice_form.text.field.max_length }}" 
+                            value="{{ choice_form.text.value|default_if_none:'' }}"/></li>
+                    
+                    {% if choice_form.text.errors %}
+                    <div class="errors">
+                        <ul class="errorlist">
+                            {% for error in choice_form.text.errors %}
+                            <li style="color: red;">{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+
+                </ol>
+                <button class="btn btn-outline-dark me-1 mb-1 mx-3" type="button" id="add-choice-form">
+                    <span class="fas fa-plus me-1" data-fa-transform="shrink-3"></span>追加</button>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-dark">
+                        <span>作成</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_script %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const addChoiceFormButton = document.getElementById("add-choice-form");
+        const choiceList = document.getElementById("choice-list");
+
+        addChoiceFormButton.addEventListener("click", function () {
+            const newChoice = document.createElement("li");
+            newChoice.innerHTML = `
+                <input type="text" name="text[]" class="form-control mb-1"
+                    placeholder="選択内容"
+                    maxlength="40" 
+                    value=""/>
+            `;
+            choiceList.appendChild(newChoice);
+        });
+    });
+</script>
+{% endblock %}

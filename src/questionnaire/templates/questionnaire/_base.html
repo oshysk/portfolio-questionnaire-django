@@ -1,0 +1,167 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- ===============================================-->
+    <!--    Document Title-->
+    <!-- ===============================================-->
+    <title>{% block title %}アンケート（Django）{% endblock %}</title>
+
+
+    <!-- ===============================================-->
+    <!--    Favicons-->
+    <!-- ===============================================-->
+    <link rel="apple-touch-icon" sizes="180x180"
+        href="{% static 'questionnaire/assets/img/favicons/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="{% static 'questionnaire/assets/img/favicons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16"
+        href="{% static 'questionnaire/assets/img/favicons/favicon-16x16.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'questionnaire/assets/img/favicons/favicon.ico' %}">
+    <link rel="manifest" href="{% static 'questionnaire/assets/img/favicons/manifest.json' %}">
+    <meta name="msapplication-TileImage" content="{% static 'questionnaire/assets/img/favicons/mstile-150x150.png' %}">
+    <meta name="theme-color" content="#ffffff">
+    <script src="{% static 'questionnaire/vendors/overlayscrollbars/OverlayScrollbars.min.js' %}"></script>
+
+
+    <!-- ===============================================-->
+    <!--    Stylesheets-->
+    <!-- ===============================================-->
+    <link href="{% static 'questionnaire/assets/css/theme.css' %}" rel="stylesheet" />
+    <link href="{% static 'questionnaire/assets/css/user.css' %}" rel="stylesheet" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;900&amp;family=Roboto:wght@100;300;400;500;700;900&amp;display=swap"
+        rel="stylesheet">
+</head>
+
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-theme fixed-top p-0"
+        data-navbar-on-scroll="data-navbar-on-scroll">
+        <div class="container">
+            <a class="navbar-brand fw-normal ls-2" href="{% url 'questionnaire:questionnaire_list' %}">アンケート（Django）</a>
+            <button class="navbar-toggler p-0" type="button" data-bs-toggle="collapse"
+                data-bs-target="#primaryNavbarCollapse" aria-controls="primaryNavbarCollapse" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="primaryNavbarCollapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'questionnaire:questionnaire_list' %}">
+                            アンケート一覧
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'questionnaire:questionnaire_create' %}">
+                            アンケート作成
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    <main class="main" id="top">
+        <div class="preloader" id="preloader" data-preloader>
+            <div class="preloader-wrapper big active" data-preloader>
+                <div class="spinner-layer spinner-white-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ============================================-->
+        <!-- <section> begin ============================-->
+        <!-- <section class="bg-100 py-0 text-center"> -->
+        <section>
+            {% block content %}{% endblock %}
+            <!-- <div class="container">
+                <div class="row justify-content-center" data-zanim-timeline="{}" data-zanim-trigger="scroll">
+
+                    <div class="col-lg-7">
+                        <div class="mb-3">
+                            <span class="text-700">アンケート一覧</span>
+                        </div>
+                        <h3>アンケート一覧</h3>
+                        <div v-if="isApiError" class="alert alert-danger mt-1" role="alert">アンケートの取得に失敗しました。</div>
+                        <div v-else-if="isApiPending" class="loader"></div>
+                        <div v-else-if="isForumEmpty">アンケートが存在しません。</div>
+                        <ul v-else class="list-group">
+                            <li class="list-group-item">
+                                <a href="#" class="d-flex w-100 justify-content-between">
+                                    アンケートのタイトル
+                                    <small class="align-self-end">最終更新: 2024/01/01 12:34:56</small>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div> -->
+            </div>
+
+        </section>
+        <!-- <section> close ============================-->
+        <!-- ============================================-->
+
+
+    </main>
+    <!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->
+
+
+    <footer class="footer text-center bg-black py-3 position-absolute w-100 bottom-0">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-12 col-md-auto mb-1 mb-md-0">
+                    <p class="mb-0">Thank you for creating with Reign &copy; 2022<span class="mx-2">|</span><span
+                            class="text-900 hover-color-white"> v5.0.0</span></p>
+                </div>
+                <div class="col-12 col-md-auto">
+                    <p class="mb-0">Made with<span class="fas fa-heart mx-2"></span>by <a class="footer-link"
+                            href="https://themewagon.com/" target="_blank">Themewagon</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ===============================================-->
+    <!--    JavaScripts-->
+    <!-- ===============================================-->
+    <script src="{% static 'questionnaire/vendors/popper/popper.min.js' %}"></script>
+    <script src="{% static 'questionnaire/vendors/bootstrap/bootstrap.min.js' %}"></script>
+    <script src="{% static 'questionnaire/vendors/anchorjs/anchor.min.js' %}"></script>
+    <script src="{% static 'questionnaire/vendors/is/is.min.js' %}"></script>
+    <script src="{% static 'questionnaire/vendors/fontawesome/all.min.js' %}"></script>
+    <script src="{% static 'questionnaire/vendors/lodash/lodash.min.js' %}"></script>
+    <script src="{% static 'questionnaire/vendors/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'questionnaire/vendors/gsap/gsap.js' %}"></script>
+    <script src="{% static 'questionnaire/vendors/gsap/customEase.js' %}"></script>
+    <script src="{% static 'questionnaire/assets/js/theme.js' %}"></script>
+
+    {% block extra_script %}{% endblock %}
+
+</body>
+
+</html>

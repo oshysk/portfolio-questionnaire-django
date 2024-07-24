@@ -1,0 +1,49 @@
+{% extends 'questionnaire/_base.html' %}
+
+{% block title %}
+アンケート結果 | アンケート（Django）
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center" data-zanim-timeline="{}" data-zanim-trigger="scroll">
+        <div class="col-lg-7">
+            <div class="mb-3">
+                <a href="{% url 'questionnaire:questionnaire_list' %}">アンケート一覧</a>
+                <span class="mx-2 text-700">></span>
+                <span class="text-700">アンケート結果</span>
+            </div>
+            <h3>{{ questionnaire.title }}</h3>
+            <div>
+                <p>{{ questionnaire.overview }}</p>
+            </div>
+            <div>
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_script %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('myChart');
+
+    const data = {
+        labels: {{ answers_labels_json| safe }},
+    datasets: [{
+        label: 'My First Dataset',
+        data: {{ answers_values_json| safe }},
+    }]
+    };
+
+    const config = {
+        type: 'pie',
+        data: data,
+    };
+
+    new Chart(ctx, config);
+
+</script>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'questionnaire/_base.html' %}
+
+{% block title %}
+アンケート一覧 | アンケート（Django）
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center" data-zanim-timeline="{}" data-zanim-trigger="scroll">
+
+        <div class="col-lg-7">
+            <div class="mb-3">
+                <span class="text-700">アンケート一覧</span>
+            </div>
+            <h3>アンケート一覧</h3>
+            {% if questionnaire_list|length == 0 %}
+            <p>アンケートが存在しません。</p>
+            {% else %}
+            <ul class="list-group">
+                {% for questionnaire in questionnaire_list %}
+                <li class="list-group-item">
+                    <a href="{% url 'questionnaire:answer_create' questionnaire.questionnaire_id %}"
+                        class="d-flex w-100 justify-content-between">
+                        {{ questionnaire.title }}
+                        <small class="align-self-end">最終更新: {{ questionnaire.updated_at }}</small>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

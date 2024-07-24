@@ -1,0 +1,14 @@
+{
+    "python.analysis.typeCheckingMode": "basic",
+    "files.associations": {
+        "*.html": "jinja-html"
+    },
+    "[jinja-html]": {
+        // {% if直後に改行されるとエラーになるため、フォーマットを無効にする。
+        // "editor.wordWrap": "off"は反映されなかった。
+        "editor.formatOnSave": false,
+        "editor.rulers": [
+            120
+        ]
+    },
+}
