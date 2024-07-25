@@ -17,7 +17,20 @@ Djangoで作成したアンケートWEBサイトです。
 
 ## 動作確認方法
 
-ローカル環境で動作確認可能です。
+ローカル環境とDocker環境で動作確認可能です。
+
+### Docker環境
+
+Dockerを利用して実行する場合は、以下の手順で動作確認できます。  
+Dockerがインストールされていることを前提として説明します。
+
+1. シェルを起動します。
+2. プロジェクトフォルダに移動します。
+3. `docker compose up -d`を実行して、Dockerコンテナを起動します。
+4. `docker compose exec django poetry run python src/manage.py makemigrations`を実行して、データベースを作成します。
+5. `docker compose exec django poetry run python src/manage.py migrate`を実行して、データベース構造を作成します。
+6. ブラウザで `http://localhost:8000` にアクセスして、画面を表示します。
+7. 停止したい場合は、`docker compose down`を実行してください。
 
 ### ローカル環境
 
