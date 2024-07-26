@@ -45,7 +45,7 @@ class Choice(models.Model):
         verbose_name_plural = "選択内容"
 
     def __str__(self):
-        return f"{self.text}（{self.questionnaire.title}）"
+        return f"{self.text}"
 
     questionnaire = models.ForeignKey(
         verbose_name="アンケート",
@@ -82,7 +82,7 @@ class Answer(models.Model):
         verbose_name_plural = "回答"
 
     def __str__(self):
-        return f"{self.choice.text}（{self.questionnaire.title}）"
+        return f"{self.choice.text}"
 
     questionnaire = models.ForeignKey(
         verbose_name="アンケート",
