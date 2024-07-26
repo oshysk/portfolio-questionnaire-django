@@ -11,9 +11,21 @@ Djangoで作成したアンケートWEBサイトです。
 
 ## デモ
 
-### アンケート一覧画面
+### アンケート一覧
 
 ![アンケート一覧画面](images/questionnaire_list.png)
+
+### アンケート回答
+
+![アンケート回答画面](images/answer_create.png)
+
+### アンケート結果
+
+![アンケート結果画面](images/questionnaire_result.png)
+
+### アンケート作成
+
+![アンケート作成画面](images/questionnaire_create.png)
 
 ## 動作確認方法
 
