@@ -21,6 +21,5 @@ from django.contrib import admin
 
 urlpatterns = [
     path("", include("questionnaire.urls")),
-    path("questionnaires/", include("questionnaire.urls")),
     path("admin/", admin.site.urls),
 ]

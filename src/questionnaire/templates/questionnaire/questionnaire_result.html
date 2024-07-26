@@ -17,7 +17,7 @@
             <div>
                 <p>{{ questionnaire.overview }}</p>
             </div>
-            <div>
+            <div style="width: 100%; height: 400px;">
                 <canvas id="myChart"></canvas>
             </div>
         </div>
@@ -32,18 +32,20 @@
 
     const data = {
         labels: {{ answers_labels_json| safe }},
-    datasets: [{
-        label: 'My First Dataset',
-        data: {{ answers_values_json| safe }},
-    }]
+        datasets: [{
+            data: {{ answers_values_json| safe }},
+        }]
     };
 
     const config = {
         type: 'pie',
         data: data,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
     };
 
     new Chart(ctx, config);
-
 </script>
 {% endblock %}
