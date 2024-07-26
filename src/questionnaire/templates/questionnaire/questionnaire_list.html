@@ -22,7 +22,7 @@
                     <a href="{% url 'questionnaire:answer_create' questionnaire.questionnaire_id %}"
                         class="d-flex w-100 justify-content-between">
                         {{ questionnaire.title }}
-                        <small class="align-self-end">最終更新: {{ questionnaire.updated_at }}</small>
+                        <small class="align-self-end">最終更新: {{ questionnaire.updated_at|date:"Y年m月d日 H時i分" }}</small>
                     </a>
                 </li>
                 {% endfor %}
