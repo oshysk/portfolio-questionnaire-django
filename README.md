@@ -39,7 +39,7 @@ Dockerがインストールされていることを前提として説明しま�
 1. シェルを起動します。
 2. プロジェクトフォルダに移動します。
 3. `docker compose up -d`を実行して、Dockerコンテナを起動します。
-4. ブラウザで `http://localhost:8000` にアクセスして、画面を表示します。
+4. ブラウザで `http://localhost` にアクセスして、画面を表示します。
 5. 停止したい場合は、`docker compose down`を実行してください。
 6. テストを実行する場合は、`docker compose exec django poetry run src/manage.py test src`を実行してください。
 
@@ -49,9 +49,8 @@ Dockerがインストールされていることを前提として説明しま�
 Pythonがインストールされていることを前提として説明します。
 
 1. コマンドプロンプトを起動します。
-2. プロジェクトフォルダの`src`ディレクトリに移動します。
-3. `poetry install`を実行して、パッケージをインストールします。
-4. `poetry run src/manage.py runserver`を実行して、サーバーを起動します。
-5. ブラウザで `http://localhost:8000` にアクセスして、アンケートを表示します。
-6. 停止したい場合は、`Ctrl + C`を実行してください。
-7. テストを実行する場合は、`poetry run src/manage.py test src`を実行してください。
+2. `poetry install`を実行して、パッケージをインストールします。
+3. `poetry run src/manage.py runserver 0.0.0.0:80`を実行して、サーバーを起動します。
+4. ブラウザで `http://localhost` にアクセスして、アンケートを表示します。
+5. 停止したい場合は、`Ctrl + C`を実行してください。
+6. テストを実行する場合は、`poetry run src/manage.py test src`を実行してください。
